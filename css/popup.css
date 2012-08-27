@@ -1,0 +1,84 @@
+#popupContainer {
+	margin: 10px;
+}
+#popupTitle {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+#cutOff {
+	clear: both;
+}
+#popupForm {
+	margin: 5px 10px;
+}
+#popupForm .control-label {
+	width: 50px;
+	font-weight: bold;
+	text-align: left;
+}
+#popupForm .controls {
+	margin-left: 70px;
+}
+.popup-input-medium {
+	width: 120px;
+}
+.controls a {
+	font-size: 8pt;
+}
+#loading {
+	width: 350px;
+	height: 212px;
+	text-align: center;
+}
+#loading img {
+	margin-top: 60px;
+}
+#eventImageContainer {
+	text-align: center;
+	vertical-align: middle;
+	height:120px;
+	max-height: 120px;
+	background-color: whiteSmoke;
+}
+#eventIcon {
+	max-width: 220px;
+	max-height:120px;
+}
+#eventImageAction {
+	margin-left: 70px;
+	margin-top: 10px;
+	text-align: left;
+}
+#eventDate {
+	margin-right: 15px;
+}
+#warningMessage {
+	padding-top: 50px;
+	color: red;
+}
+#userLoginForm {
+	margin: 5px 10px;
+}
+#userLoginForm .control-label {
+	width: 50px;
+	font-weight: bold;
+	text-align: left;
+}
+#userLoginForm .controls {
+	margin-left: 70px;
+}
+#userInfoContainer {
+	max-width: 250px;
+	overflow: hidden;
+	text-align: left;
+}
+#userInfo {
+	color:#08C;
+}
+#popupHeader {
+	width:370px;
+}
+
+#eventImageAction a {
+	font-size: 8pt;
+}

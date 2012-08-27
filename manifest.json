@@ -1,0 +1,27 @@
+{
+    "name": "Plancast Extension",
+    "version": "1.6",
+    "manifest_version": 2,
+    "description": "Try to capture html from page.",
+    "browser_action": {
+        "default_icon": "img/icon.png",
+        "default_title": "Plancast",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/jquery.js", "js/popup.js", "js/bootstrap-datepicker.js"]
+    }],
+    "permissions": [
+      "tabs", "http://*/*", "https://*/*"
+    ],
+    "icons" : {
+      "48" : "img/icon-48.png"
+    },
+    "app": {
+      "launch": {
+      	"web_url": "http://plancst.com/goodies"
+      }
+    }
+}

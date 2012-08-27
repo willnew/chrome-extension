@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Plan Cast Popup</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="css/timePicker.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery.timePicker.js"></script>
+    <script type="text/javascript" src="js/timezone.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/serviceConnection.js"></script>
+  </head>
+  <body>
+    <div id="popupContainer">
+    <div id="popupHeader">
+      <div class="pull-left" id="popupTitle">
+        <h3>Add to my Plancast calendar</h3>
+        <small>fields are auto filled, you can correct it if needed</small>
+        <div id="userInfoContainer" class="hide"><span id="userInfo" title="">User : </span></div>    
+      </div>
+      <div class="pull-right">
+        <img src="img/logo.png" />      
+      </div>      
+    </div>
+    <div class="alert alert-error hide" id="addPlanFailed">
+      <a class="close" href="javascript:vodi(0);" id="addPlanFailedClose">x</a>
+        <h4 class="alert-heading">Oops!</h4>
+        There is something wrong with your plan adding action, Please check it!      
+    </div>
+    <div class="alert alert-error hide" id="validatePlanFailed">
+      <a class="close" href="javascript:vodi(0);" id="validatePlanFailedClose">x</a>
+        <h4 class="alert-heading">Oops!</h4>
+        Plan data is invalid, Please check it!      
+    </div>
+    <hr id="cutOff" />
+    <div id="loading">
+      <img src="img/waiting.gif" alt="Loading">
+    </div>
+    <form class="form-horizontal hide" id="popupForm">
+      <input type="hidden" id="facebookBinded" />
+      <input type="hidden" id="twitterBinded" />
+      <input type="hidden" id="linkedinBinded" />
+      <div class="control-group">
+        <label class="control-label" for="eventTitle">What</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="eventTitle" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="eventAddress">Where</label>
+        <div class="controls" id="eventAddressContainer">
+          <input type="text" class="input-xlarge" id="eventAddress" />
+          <a href="javascript:void(0);" class="hide">Next possible address &gt;</a>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="eventDate">When</label>
+        <div class="controls" id="eventDateContainer">
+          <input type="text" class="input-xlarge" id="eventDate" data-date-format="mm/dd/yyyy" />
+          <input type="text" class="popup-input-medium hide" id="eventTime" data-date-format="hh:mm" value="00:00" /><br/>
+          <a href="javascript:void(0);" class="hide">Next possible time &gt;</a>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="eventTimezone">Timezone</label>
+        <div class="controls" id="eventTimezoneContainer"></div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="eventImage">Logo</label>
+        <div class="controls" id="eventImageContainer">
+          <img src="" id="eventIcon" />
+          <p id="warningMessage" class="hide">Opps!No Logo found</p>
+        </div>
+        <p id="eventImageAction">
+          <input type="checkbox" id="includeBanner" value="includeBanner" checked="checked"> include logo             
+          <a href="javascript:void(0);" class="hide pull-right">Next possible logo &gt;</a>
+        </p>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="eventLink">Link</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="eventLink" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inlineCheckboxes">Send to</label>
+        <div class="controls">
+          <label class="checkbox inline">
+            <input type="checkbox" id="facebookLink" value="facebookLink"> <img src="img/facebook.jpg" alt="facebook" />
+          </label>
+          <label class="checkbox inline">
+            <input type="checkbox" id="twitterLink" value="twitterLink"> <img src="img/twitter.jpg" alt="twitter" />
+          </label>
+          <label class="checkbox inline">
+            <input type="checkbox" id="linkedinLink" value="linkedinLink"> <img src="img/linkedin.jpg" alt="linkedin" />
+          </label>
+          <div class="btn btn-info pull-right" id="popupSubmit">Add Plan</div>
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success hide" id="addPlanSuccess">
+      <a class="close" href="javascript:vodi(0);" id="addPlanSuccessClose">x</a>
+        <h4 class="alert-heading">Congratulations!</h4>
+        This plan is added to Plancast!      
+    </div>
+
+    <form class="form-horizontal hide" id="userLoginForm">
+      <div class="alert alert-error hide" id="notLogin">
+        <a class="close" href="javascript:vodi(0);" id="notLoginClose">x</a>
+          <h4 class="alert-heading">Warning!</h4>
+          Please login your Plancast account first.      
+      </div>
+      <div class="alert alert-error hide" id="loginError">
+        <a class="close" href="javascript:vodi(0);" id="loginErrorClose">x</a>
+          <h4 class="alert-heading">Oops!</h4>
+          Your Username or Password maybe wrong!      
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="username">Username/<br />Email</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="username" 
+            placeholder="input your Plancast username" />
+        </div>
+      </div>      
+      <div class="control-group">
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+          <input type="password" class="input-xlarge" id="password" 
+            placeholder="input your Plancast password" />
+        </div>
+      </div>
+      <div class="btn btn-info pull-right" id="loginSubmit">Login</div>
+    </form>
+    <div id="imgBtn" style="clear: both;"></div>      
+    </div>
+  </body>
+</html>
